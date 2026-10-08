@@ -1,0 +1,13 @@
+[package]
+name = "problems"
+version = "0.1.0"
+edition = "2024"
+publish = false
+metadata = { cargo-compete = { bin = { 9000 = { problem = "https://yukicoder.me/problems/no/9000"}, 480 = { problem = "https://yukicoder.me/problems/no/480"}}}}
+
+[dependencies]
+proconio = { version = "=0.5.0", features = ["derive"] }
+itertools = "=0.14.0"
+num = "=0.4.3"
+ac-library-rs = "=0.2.0"
+cp_library = { git = "https://github.com/itto4869/cp_library.git", branch = "rust-1.89.0" }

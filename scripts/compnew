@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+    echo "Usage: scripts/compnew <contest-id> [cargo compete new options...]"
+    exit 0
+fi
+if [[ ! "${1:-}" =~ ^[0-9]+$ ]]; then
+    echo "エラー: 数字のコンテストIDを指定してください (例: scripts/compnew 296)" >&2
+    exit 1
+fi
+
+root_dir="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$root_dir"
+contest_id="$1"
+shift
+package_name="contest${contest_id}"
+if [[ -e "$package_name" ]]; then
+    echo "エラー: $package_name はすでに存在します。再開には scripts/compuse $package_name を使ってください。" >&2
+    exit 1
+fi
+
+cargo compete new "$contest_id" "$@"
+sed -i -E 's/^(edition[[:space:]]*=[[:space:]]*)"[0-9]+"/\1"2024"/' "$package_name/Cargo.toml"
+"$root_dir/scripts/compuse" "$package_name"
+find "$package_name/testcases" -type d -empty -exec touch {}/.gitkeep \;

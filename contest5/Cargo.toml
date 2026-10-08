@@ -1,0 +1,20 @@
+[package]
+name = "contest5"
+version = "0.1.0"
+edition = "2024"
+
+[package.metadata.cargo-compete.bin]
+contest5-a = { alias = "a", problem = "https://yukicoder.me/problems/no/5" }
+
+[[bin]]
+name = "contest5-a"
+path = "src/bin/a.rs"
+
+[dependencies]
+proconio = { version = "=0.5.0", features = ["derive"] }
+itertools = "=0.14.0"
+num = "=0.4.3"
+ac-library-rs = "=0.2.0"
+cp_library = { git = "https://github.com/itto4869/cp_library.git", branch = "rust-1.89.0" }
+
+[dev-dependencies]

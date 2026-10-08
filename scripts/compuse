@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+    echo "Usage: scripts/compuse <contest123|problems>"
+    exit 0
+fi
+if [[ $# -ne 1 || ! "$1" =~ ^(contest[0-9]+|problems)$ ]]; then
+    echo "エラー: contest123 または problems を指定してください。" >&2
+    exit 1
+fi
+root_dir="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$root_dir"
+if [[ ! -f "$1/Cargo.toml" ]]; then
+    echo "エラー: $1/Cargo.toml がありません。" >&2
+    exit 1
+fi
+members='"problems"'
+if [[ "$1" != "problems" ]]; then
+    members+=", \"$1\""
+fi
+tmpfile="$(mktemp "$root_dir/.workspace.XXXXXX")"
+trap 'rm -f "$tmpfile"' EXIT
+printf '[workspace]\nresolver = "2"\nmembers = [%s]\n' "$members" > "$tmpfile"
+mv "$tmpfile" Cargo.toml
+echo "ワークスペースを切り替えました: $members"

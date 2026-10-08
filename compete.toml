@@ -1,0 +1,43 @@
+test-suite = "{{ manifest_dir }}/testcases/{{ bin_alias }}.yml"
+
+[template]
+src = '''
+use proconio::{fastout, input};
+
+#[fastout]
+fn main() {
+    input! {}
+}
+'''
+
+[template.new]
+# cargo-compete 0.10.7 accepts up to 2021; scripts/compnew upgrades to 2024.
+edition = "2021"
+dependencies = '''
+proconio = { version = "=0.5.0", features = ["derive"] }
+itertools = "=0.14.0"
+num = "=0.4.3"
+ac-library-rs = "=0.2.0"
+cp_library = { git = "https://github.com/itto4869/cp_library.git", branch = "rust-1.89.0" }
+'''
+
+[new]
+kind = "cargo-compete"
+platform = "yukicoder"
+path = "./{{ package_name }}"
+
+[add]
+url = 'https://yukicoder.me/problems/no/{{ args[0] }}'
+bin-name = '{% assign segments = url | split: "/" %}{{ segments[5] }}'
+bin-alias = '{% assign segments = url | split: "/" %}{{ segments[5] }}'
+bin-src-path = './src/bin/{{ bin_alias }}.rs'
+
+[test]
+toolchain = "1.89.0"
+profile = "release"
+
+[submit]
+kind = "command"
+# Only exclude crates provided by https://yukicoder.me/help/environments.
+args = ["cargo", "equip", "--exclude", "proconio", "num", "itertools", "ac-library-rs", "--remove", "docs", "--minify", "libs", "--bin", "{{ bin_name }}", "--mine", "github.com/itto4869"]
+language_id = "rust"

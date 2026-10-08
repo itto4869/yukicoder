@@ -1,0 +1,17 @@
+---
+type: Batch
+timelimit: 5s
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      yukicoder
+    out: |
+      Hello World!
+
+extend:
+  - type: Text
+    path: "./9000"
+    in: /in/*.txt
+    out: /out/*.txt
