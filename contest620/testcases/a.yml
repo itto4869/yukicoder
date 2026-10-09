@@ -1,0 +1,21 @@
+---
+type: Batch
+timelimit: 2s
+match: Lines
+
+cases:
+  - name: sample1
+    in: "9\nKAGUYABAD"
+    out: "4"
+  - name: sample2
+    in: "10\nHAPPYHAPPY"
+    out: "1"
+  - name: sample3
+    in: "5\nHAPPY"
+    out: "0"
+
+extend:
+  - type: Text
+    path: "./a"
+    in: /in/*.txt
+    out: /out/*.txt

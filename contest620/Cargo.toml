@@ -1,0 +1,55 @@
+[package]
+name = "contest620"
+version = "0.1.0"
+edition = "2024"
+
+[package.metadata.cargo-compete.bin]
+contest620-a = { alias = "a", problem = "https://yukicoder.me/problems/no/3757" }
+contest620-b = { alias = "b", problem = "https://yukicoder.me/problems/no/3758" }
+contest620-c = { alias = "c", problem = "https://yukicoder.me/problems/no/3759" }
+contest620-d = { alias = "d", problem = "https://yukicoder.me/problems/no/3760" }
+contest620-e = { alias = "e", problem = "https://yukicoder.me/problems/no/3761" }
+contest620-f = { alias = "f", problem = "https://yukicoder.me/problems/no/3762" }
+contest620-g = { alias = "g", problem = "https://yukicoder.me/problems/no/3763" }
+contest620-h = { alias = "h", problem = "https://yukicoder.me/problems/no/3764" }
+
+[[bin]]
+name = "contest620-a"
+path = "src/bin/a.rs"
+
+[[bin]]
+name = "contest620-b"
+path = "src/bin/b.rs"
+
+[[bin]]
+name = "contest620-c"
+path = "src/bin/c.rs"
+
+[[bin]]
+name = "contest620-d"
+path = "src/bin/d.rs"
+
+[[bin]]
+name = "contest620-e"
+path = "src/bin/e.rs"
+
+[[bin]]
+name = "contest620-f"
+path = "src/bin/f.rs"
+
+[[bin]]
+name = "contest620-g"
+path = "src/bin/g.rs"
+
+[[bin]]
+name = "contest620-h"
+path = "src/bin/h.rs"
+
+[dependencies]
+proconio = { version = "=0.5.0", features = ["derive"] }
+itertools = "=0.14.0"
+num = "=0.4.3"
+ac-library-rs = "=0.2.0"
+cp_library = { git = "https://github.com/itto4869/cp_library.git", branch = "rust-1.89.0" }
+
+[dev-dependencies]

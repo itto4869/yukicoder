@@ -1,0 +1,21 @@
+---
+type: Batch
+timelimit: 2s
+match: Lines
+
+cases:
+  - name: sample1
+    in: 2 3 2
+    out: "43"
+  - name: sample2
+    in: 1 1 1
+    out: "2"
+  - name: sample3
+    in: 40 40 40
+    out: "801530328"
+
+extend:
+  - type: Text
+    path: "./g"
+    in: /in/*.txt
+    out: /out/*.txt

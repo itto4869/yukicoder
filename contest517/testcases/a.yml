@@ -1,0 +1,21 @@
+---
+type: Batch
+timelimit: 2s
+match: Lines
+
+cases:
+  - name: sample1
+    in: "1990"
+    out: Namiki High School
+  - name: sample2
+    in: "2024"
+    out: Namiki Secondary School
+  - name: sample3
+    in: "1729"
+    out: None
+
+extend:
+  - type: Text
+    path: "./a"
+    in: /in/*.txt
+    out: /out/*.txt
